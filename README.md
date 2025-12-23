@@ -36,3 +36,33 @@ Bot automatizado de e-commerce para WhatsApp Web desarrollado en Python. Permite
 ├── ventas_argos.db       # Base de datos (Se crea automáticamente)
 ├── requirements.txt      # Lista de dependencias
 └── Dockerfile            # Configuración para Docker
+## 🔄 Flujo de Funcionamiento
+
+El bot sigue una máquina de estados finitos para guiar al usuario a través del proceso de compra:
+
+```mermaid
+sequenceDiagram
+    participant U as Usuario (WhatsApp)
+    participant B as Bot (Python + Playwright)
+    participant D as Base de Datos (SQLite)
+
+    U->>B: "Hola" / "Menu"
+    B-->>U: Muestra Catálogo (Productos.json)
+    
+    U->>B: Elige Marca (ej: Ricocan)
+    B-->>U: Pregunta Tipo (Adulto/Cachorro)
+    
+    U->>B: Define Tipo
+    B-->>U: Muestra Precios y pide Peso
+    
+    U->>B: Ingresa Peso (ej: 15kg)
+    Note over B: Regex valida el número
+    B-->>U: Pide Cantidad
+    
+    U->>B: Ingresa Cantidad (ej: 2)
+    B->>B: Calcula Subtotal
+    B-->>U: Confirma Carrito y pide Pago
+    
+    U->>B: "Yape" o "Transferencia"
+    B->>D: Registra Venta (SQL INSERT)
+    B-->>U: ¡Pedido Confirmado! (Ticket)
