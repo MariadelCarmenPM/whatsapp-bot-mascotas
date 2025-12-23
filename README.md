@@ -37,8 +37,14 @@ Bot automatizado de e-commerce para WhatsApp Web desarrollado en Python. Permite
 ├── requirements.txt      # Lista de dependencias
 └── Dockerfile            # Configuración para Docker
 ```
-🔄 Flujo de Funcionamiento
-El bot sigue una máquina de estados finitos para guiar al usuario a través del proceso de compra:
+
+
+## 🔄 Flujo de Funcionamiento
+
+El bot sigue una máquina de estados finitos para guiar al usuario a través del proceso de compra
+:
+```mermaid
+
 sequenceDiagram
     participant U as Usuario (WhatsApp)
     participant B as Bot (Python + Playwright)
@@ -64,43 +70,33 @@ sequenceDiagram
     U->>B: "Yape" o "Transferencia"
     B->>D: Registra Venta (SQL INSERT)
     B-->>U: ¡Pedido Confirmado! (Ticket)
+    
+```
 
-  ⚙️ Instalación y Uso
-Clonar el repositorio:
+## ⚙️ Instalación y Uso
 
-Bash
+1. **Clonar el repositorio:**
+   ```bash
+   git clone [https://github.com/MariadelCarmenPM/whatsapp-bot-mascotas.git](https://github.com/MariadelCarmenPM/whatsapp-bot-mascotas.git)
+   cd whatsapp-bot-mascotas
+   ```
 
-git clone https://github.com/MariadelCarmenPM/whatsapp-bot-mascotas.git
-cd whatsapp-bot-mascotas
-Instalar dependencias:
+2. **Instalar dependencias:**
+   ```bash
+   pip install -r requirements.txt
+   playwright install chromium
+   ```
 
-Bash
+3. **Ejecutar el Bot:**
+   ```bash
+   python main.py
+   ```
+   *Se abrirá el navegador para escanear el código QR.*
 
-pip install -r requirements.txt
-playwright install chromium
-Ejecutar el Bot:
-
-Bash
-
-python main.py
-Se abrirá el navegador para escanear el código QR.
-
-Generar Reporte Excel:
-
-Bash
-
-python exportar_excel.py
-Desarrollado con ❤️ para ArgosMarket.
-
+4. **Generar Reporte Excel:**
+   ```bash
+   python exportar_excel.py
+   ```
 
 ---
-
-### 🚀 Para subirlo a GitHub:
-
-En tu terminal ejecuta:
-
-1.  `git add README.md`
-2.  `git commit -m "Docs: README final actualizado"`
-3.  `git push`
-
-¡Y listo! Al recargar la página verás todo ordenado y el diagrama dibujado.
+Desarrollado con ❤️ para ArgosMarket.
